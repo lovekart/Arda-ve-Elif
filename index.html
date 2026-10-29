@@ -67,7 +67,8 @@
     font: italic 400 clamp(28px, 4.2vw, 46px)/1.1 var(--serif); color: #EFE6D4;
     animation: belir 1s ease 1.15s both;
   }
-  .acilis-isim b { font-weight: 400; color: #E2574C; padding: 0 .22em; }
+  .acilis-isim .mono { width: 1.5em; height: 1.5em; vertical-align: -.48em; margin: 0 .3em; color: #EFE6D4; }
+  .acilis-isim .mono-e { fill: #E2574C; }
   .acilis-alt {
     display: block; margin-top: 1.6em;
     font: 12px/1 var(--daktilo); letter-spacing: .5em; color: rgba(239, 230, 212, .55);
@@ -103,10 +104,11 @@
     font-size: clamp(64px, 11vw, 152px); line-height: .86; letter-spacing: -.02em;
     margin: 0;
   }
-  .isimler .ve {
-    display: block; font-family: var(--serif); font-style: italic;
-    font-size: .42em; color: var(--kirmizi); margin: .18em 0 .08em .9em;
-  }
+  .mono { display: inline-block; width: 1.15em; height: 1.15em; vertical-align: -.26em; overflow: visible; }
+  .mono-a { font: 400 58px/1 var(--baslik); fill: currentColor; }
+  .mono-e { font: italic 400 52px/1 var(--serif); fill: var(--kirmizi); }
+  .isimler .ve { display: block; margin: .1em 0 .06em .62em; line-height: 0; }
+  .isimler .ve .mono { width: .78em; height: .78em; color: var(--murekkep); }
   .isimler .ikinci { display: block; padding-left: .55em; }
   .kapak-alt {
     margin-top: 36px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
@@ -295,7 +297,7 @@
   }
   .son .baski { max-width: 280px; }
   .son-isim { font: 400 clamp(52px, 8vw, 104px)/.9 var(--baslik); margin: 0 0 22px; letter-spacing: -.02em; }
-  .son-isim em { font-family: var(--serif); font-size: .5em; color: var(--kirmizi); }
+  .son-isim .mono { width: .8em; height: .8em; vertical-align: -.08em; margin: 0 .12em; }
   .son-satir { font: 15px/1.7 var(--daktilo); color: var(--soluk); margin: 0; }
   .son-satir b { color: var(--murekkep); }
   .imza { text-align: center; padding: 0 24px 34px; font: 12px/1 var(--daktilo); letter-spacing: .18em; color: #9A907F; }
@@ -372,7 +374,7 @@
 <div class="deklansor" aria-hidden="true">
   <div class="acilis">
     <span class="acilis-damga">'26 4 16</span>
-    <span class="acilis-isim">Arda<b>&amp;</b>Elif</span>
+    <span class="acilis-isim">Arda<svg class="mono" viewBox="0 0 100 100" role="img" aria-label="ve"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="41.5" fill="none" stroke="currentColor" stroke-width=".6" opacity=".55"/><text class="mono-a" x="42" y="68" text-anchor="middle">A</text><text class="mono-e" x="61" y="74" text-anchor="middle">E</text></svg>Elif</span>
     <span class="acilis-alt">16 · 04 · 2026</span>
   </div>
   <div class="flas"></div>
@@ -385,7 +387,7 @@
 
 <section class="kapak">
   <div>
-    <h1 class="isimler">Arda<span class="ve">&amp;</span><span class="ikinci">Elif</span></h1>
+    <h1 class="isimler">Arda<span class="ve"><svg class="mono" viewBox="0 0 100 100" role="img" aria-label="ve"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="41.5" fill="none" stroke="currentColor" stroke-width=".6" opacity=".55"/><text class="mono-a" x="42" y="68" text-anchor="middle">A</text><text class="mono-e" x="61" y="74" text-anchor="middle">E</text></svg></span><span class="ikinci">Elif</span></h1>
     <p class="kapak-alt"><b>16 Nisan 2026</b><i></i><span id="kapakGun">—</span></p>
   </div>
   <figure class="baski" data-buyut>
@@ -400,7 +402,7 @@
     <div class="bilet-ana">
       <div class="bilet-ust"><span>BİLET</span><span>No 160426</span></div>
       <div class="alanlar">
-        <div class="alan"><small>Yolcular</small><div>Arda &amp; Elif</div></div>
+        <div class="alan"><small>Yolcular</small><div>Arda <svg class="mono" viewBox="0 0 100 100" role="img" aria-label="ve"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="41.5" fill="none" stroke="currentColor" stroke-width=".6" opacity=".55"/><text class="mono-a" x="42" y="68" text-anchor="middle">A</text><text class="mono-e" x="61" y="74" text-anchor="middle">E</text></svg> Elif</div></div>
         <div class="alan"><small>Kalkış</small><div>16 Nisan 2026</div></div>
         <div class="alan gecen">
           <small>Geçen süre</small>
@@ -490,7 +492,7 @@
     <figure class="baski" data-buyut><span class="bant ust-orta"></span><img src="foto/17.jpg" width="1024" height="1536" alt="Çocukluk fotoğrafı" loading="lazy"></figure>
     <div>
       <p class="son-soz">Normalde karmaşayı hiç sevmem ama senin o kıvırcık saçlarının arasındaki dağınıklıkta kaybolmaya bayılıyorum</p>
-      <p class="son-isim">Arda <em>&amp;</em> Elif</p>
+      <p class="son-isim">Arda <svg class="mono" viewBox="0 0 100 100" role="img" aria-label="ve"><circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="50" cy="50" r="41.5" fill="none" stroke="currentColor" stroke-width=".6" opacity=".55"/><text class="mono-a" x="42" y="68" text-anchor="middle">A</text><text class="mono-e" x="61" y="74" text-anchor="middle">E</text></svg> Elif</p>
       <p class="son-satir"><b>16.04.2026</b> — bugün<br><span id="sonGun">—</span></p>
     </div>
   </section>
