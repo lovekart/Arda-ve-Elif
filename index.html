@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#ECE5D6">
+<title>Arda &amp; Elif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=Libre+Caslon+Display&family=Libre+Caslon+Text:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --kagit: #ECE5D6;
+    --kagit2: #E3DAC7;
+    --murekkep: #1F1C18;
+    --soluk: #6E665B;
+    --kirmizi: #B3352B;
+    --mavi: #34506B;
+    --bant: rgba(226, 214, 176, .78);
+    --damga: #FF8B2B;
+    --film: #1A1611;
+    --serif: "Libre Caslon Text", Georgia, serif;
+    --baslik: "Libre Caslon Display", Georgia, serif;
+    --daktilo: "Courier Prime", "Courier New", monospace;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; overflow-x: clip; }
+  body {
+    margin: 0;
+    background-color: var(--kagit);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .3 0 0 0 0 .22 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    color: var(--murekkep);
+    font-family: var(--serif);
+    overflow-x: clip;
+  }
+  img { display: block; max-width: 100%; }
+
+  /* ---------- deklanşör açılışı ---------- */
+  .deklansor {
+    position: fixed; inset: 0; z-index: 50;
+    display: grid; place-items: center;
+    cursor: pointer;
+  }
+  .acildi .deklansor { pointer-events: none; }
+  .deklansor::before, .deklansor::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 50.5%;
+    background: var(--film);
+    transition: transform .9s cubic-bezier(.7, 0, .2, 1);
+  }
+  .deklansor::before { top: 0; }
+  .deklansor::after { bottom: 0; }
+  .acilis {
+    position: relative; z-index: 1; text-align: center; padding: 0 16px;
+    transition: opacity .35s;
+  }
+  .acilis-damga {
+    display: block; white-space: nowrap;
+    font: 700 clamp(58px, 15vw, 190px)/1 var(--daktilo); letter-spacing: .04em;
+    color: var(--damga);
+    text-shadow: 0 0 8px rgba(255, 139, 43, .9), 0 0 28px rgba(255, 110, 20, .6), 0 0 70px rgba(255, 90, 10, .35);
+    animation: yanSon 1s steps(1, end) .25s both;
+  }
+  .acilis-isim {
+    display: block; margin-top: .55em;
+    font: italic 400 clamp(28px, 4.2vw, 46px)/1.1 var(--serif); color: #EFE6D4;
+    animation: belir 1s ease 1.15s both;
+  }
+  .acilis-isim b { font-weight: 400; color: #E2574C; padding: 0 .22em; }
+  .acilis-alt {
+    display: block; margin-top: 1.6em;
+    font: 12px/1 var(--daktilo); letter-spacing: .5em; color: rgba(239, 230, 212, .55);
+    animation: belir 1s ease 1.6s both;
+  }
+  .flas { position: fixed; inset: 0; z-index: 3; background: #FFF8EC; opacity: 0; pointer-events: none; }
+  .flasla .flas { animation: flas .7s ease-out both; }
+  @keyframes yanSon {
+    0% { opacity: 0; } 20% { opacity: .9; } 30% { opacity: .1; } 45% { opacity: 1; } 55% { opacity: .35; } 70%, 100% { opacity: 1; }
+  }
+  @keyframes belir { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  @keyframes flas { 0% { opacity: 0; } 12% { opacity: .95; } 100% { opacity: 0; } }
+  .acildi .deklansor::before { transform: translateY(-101%); }
+  .acildi .deklansor::after { transform: translateY(101%); }
+  .acildi .acilis { opacity: 0; }
+  .bitti .deklansor { display: none; }
+
+  /* ---------- üst satır ---------- */
+  .ust {
+    display: flex; justify-content: space-between; gap: 16px;
+    max-width: 1180px; margin: 0 auto; padding: 22px 24px 0;
+    font: 13px/1.4 var(--daktilo); letter-spacing: .08em; text-transform: uppercase;
+    color: var(--soluk);
+  }
+
+  /* ---------- kapak ---------- */
+  .kapak {
+    max-width: 1180px; margin: 0 auto; padding: 48px 24px 80px;
+    display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center;
+  }
+  .isimler {
+    font-family: var(--baslik); font-weight: 400;
+    font-size: clamp(64px, 11vw, 152px); line-height: .86; letter-spacing: -.02em;
+    margin: 0;
+  }
+  .isimler .ve {
+    display: block; font-family: var(--serif); font-style: italic;
+    font-size: .42em; color: var(--kirmizi); margin: .18em 0 .08em .9em;
+  }
+  .isimler .ikinci { display: block; padding-left: .55em; }
+  .kapak-alt {
+    margin-top: 36px; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
+    font: 15px/1.5 var(--daktilo); color: var(--soluk);
+  }
+  .kapak-alt b { color: var(--murekkep); font-weight: 700; letter-spacing: .04em; }
+  .kapak-alt i { display: inline-block; width: 46px; height: 1px; background: currentColor; transform: translateY(-4px); }
+
+  /* baskı (fotoğraf kâğıdı) */
+  .baski {
+    position: relative; margin: 0;
+    background: #FBFAF6; padding: 10px 10px 12px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.12), 0 10px 24px -10px rgba(40, 28, 10, .45);
+    transform: rotate(var(--aci, 0deg));
+    cursor: zoom-in;
+  }
+  .baski img { width: 100%; height: auto; background: var(--kagit2); }
+  .baski .no {
+    display: block; margin-top: 9px;
+    font: 12px/1 var(--daktilo); letter-spacing: .12em; color: var(--soluk);
+  }
+  .bant {
+    position: absolute; width: 96px; height: 28px; background: var(--bant);
+    box-shadow: 0 1px 2px rgba(0,0,0,.08);
+    clip-path: polygon(3% 0, 97% 4%, 100% 50%, 96% 100%, 2% 96%, 0 45%);
+    z-index: 2;
+  }
+  .bant.ust-orta { top: -12px; left: 50%; transform: translateX(-50%) rotate(-3deg); }
+  .bant.sol { top: -8px; left: -22px; transform: rotate(-38deg); }
+  .bant.sag { top: -8px; right: -22px; transform: rotate(36deg); }
+
+  .kapak .baski { max-width: 470px; justify-self: end; }
+  .tarih-damga {
+    position: absolute; right: 26px; bottom: 54px;
+    font: 700 clamp(17px, 2vw, 22px)/1 var(--daktilo); letter-spacing: .14em;
+    color: var(--damga);
+    text-shadow: 0 0 4px rgba(255, 139, 43, .7), 0 0 12px rgba(255, 110, 20, .35);
+    pointer-events: none;
+  }
+
+  /* ---------- bilet (sayaç) ---------- */
+  .bilet-alan { max-width: 1060px; margin: 0 auto; padding: 0 24px 110px; }
+  .bilet {
+    --delik: 13px;
+    display: grid; grid-template-columns: 1fr 250px;
+    background: #F6F1E6;
+    border: 1px solid #CFC4AD;
+    box-shadow: 0 12px 30px -18px rgba(40, 28, 10, .5);
+    -webkit-mask: radial-gradient(circle var(--delik) at calc(100% - 250px) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+                  radial-gradient(circle var(--delik) at calc(100% - 250px) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+            mask: radial-gradient(circle var(--delik) at calc(100% - 250px) 0, #0000 98%, #000) top / 100% 51% no-repeat,
+                  radial-gradient(circle var(--delik) at calc(100% - 250px) 100%, #0000 98%, #000) bottom / 100% 51% no-repeat;
+  }
+  .bilet-ana { padding: 26px 34px 30px; }
+  .bilet-kocan {
+    padding: 26px 26px 30px;
+    border-left: 2px dashed #BDB096;
+    background: repeating-linear-gradient(90deg, transparent 0 7px, rgba(179, 53, 43, .045) 7px 8px);
+  }
+  .bilet-ust {
+    display: flex; justify-content: space-between; align-items: center; gap: 12px;
+    padding-bottom: 14px; margin-bottom: 20px; border-bottom: 1px solid #D8CDB6;
+    font: 700 13px/1 var(--daktilo); letter-spacing: .22em; color: var(--kirmizi);
+  }
+  .bilet-ust span:last-child { color: var(--soluk); font-weight: 400; letter-spacing: .12em; }
+  .alanlar { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 30px; }
+  .alan small, .kocan-alan small {
+    display: block; font: 11px/1 var(--daktilo); letter-spacing: .18em; text-transform: uppercase;
+    color: var(--soluk); margin-bottom: 7px;
+  }
+  .alan div { font: 22px/1.2 var(--serif); }
+  .gecen { grid-column: 1 / -1; }
+  .sayac { display: flex; flex-wrap: wrap; gap: 10px 26px; align-items: baseline; }
+  .sayac span { font: 400 clamp(36px, 5.6vw, 60px)/1 var(--baslik); font-variant-numeric: tabular-nums; }
+  .sayac em { font: 13px/1 var(--daktilo); font-style: normal; color: var(--soluk); margin-left: 4px; }
+  .kocan-alan + .kocan-alan { margin-top: 20px; }
+  .kocan-alan div { font: 19px/1.25 var(--serif); }
+  .kocan-alan div b { font: 400 34px/1 var(--baslik); }
+  .barkod {
+    margin-top: 24px; height: 34px;
+    background: repeating-linear-gradient(90deg,
+      var(--murekkep) 0 2px, transparent 2px 4px, var(--murekkep) 4px 5px, transparent 5px 8px,
+      var(--murekkep) 8px 11px, transparent 11px 12px, var(--murekkep) 12px 13px, transparent 13px 17px);
+    opacity: .82;
+  }
+
+  /* ---------- film rulosu ---------- */
+  .rulo-alan { padding: 0 0 120px; }
+  .bolum-baslik {
+    max-width: 1180px; margin: 0 auto 28px; padding: 0 24px;
+    display: flex; align-items: baseline; gap: 18px;
+  }
+  .bolum-baslik h2 {
+    margin: 0; font: italic 400 clamp(34px, 5vw, 54px)/1 var(--serif);
+  }
+  .bolum-baslik span { font: 13px/1 var(--daktilo); letter-spacing: .14em; color: var(--soluk); text-transform: uppercase; }
+  .rulo {
+    background: var(--film);
+    padding: 34px 0;
+    position: relative;
+    margin: 0 -20px;
+    box-shadow: 0 16px 30px -18px rgba(0,0,0,.6);
+  }
+  .rulo::before, .rulo::after {
+    content: ""; position: absolute; left: 0; right: 0; height: 12px;
+    background: repeating-linear-gradient(90deg, transparent 0 9px, var(--kagit) 9px 21px, transparent 21px 30px);
+    opacity: .9;
+  }
+  .rulo::before { top: 11px; }
+  .rulo::after { bottom: 11px; }
+  .rulo-pencere { overflow: hidden; }
+  .rulo-ic {
+    display: flex; width: max-content; padding: 4px 0;
+    animation: kay var(--sure, 40s) linear infinite;
+  }
+  .rulo:hover .rulo-ic, .rulo.dur .rulo-ic { animation-play-state: paused; }
+  @keyframes kay { from { transform: translateX(0); } to { transform: translateX(calc(-1 * var(--set, 50%))); } }
+  .kare { flex: none; margin: 0 14px 0 0; position: relative; cursor: zoom-in; }
+  .kare img { height: clamp(220px, 34vw, 330px); width: auto; max-width: none; filter: saturate(.92) contrast(1.03); }
+  .kare figcaption {
+    position: absolute; left: 2px; bottom: -24px;
+    font: 700 11px/1 var(--daktilo); letter-spacing: .16em; color: var(--damga); opacity: .85;
+  }
+
+  /* ---------- albüm ---------- */
+  .album-alan { max-width: 1180px; margin: 0 auto; padding: 0 24px 140px; }
+  .album { max-width: 1040px; margin: 40px auto 0; display: flex; flex-direction: column; gap: 120px; }
+  .cift {
+    display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 60px; align-items: center;
+    opacity: 0; translate: 0 28px; transition: opacity .8s ease, translate .8s ease;
+  }
+  .cift.gorundu { opacity: 1; translate: 0 0; }
+  .cift .baski { width: fit-content; max-width: 100%; justify-self: center; }
+  .cift .baski img { width: auto; max-width: 100%; max-height: 600px; }
+  .cift:nth-child(even) { grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); }
+  .cift:nth-child(even) .baski { order: 2; }
+  .soz { margin: 0; }
+  .soz::before { content: "♥"; display: block; color: var(--kirmizi); font-size: 18px; line-height: 1; margin-bottom: 26px; }
+  .soz p { margin: 0; font: italic 400 clamp(20px, 1.9vw, 25px)/1.6 var(--serif); }
+  .soz cite { display: block; margin-top: 26px; font: normal 12px/1.4 var(--daktilo); letter-spacing: .18em; text-transform: uppercase; color: var(--soluk); }
+  .soz cite span { letter-spacing: .02em; text-transform: none; font-style: italic; font-family: var(--serif); font-size: 15px; }
+  .soz small { display: block; margin-top: 14px; font: 15px/1.5 var(--daktilo); color: var(--soluk); }
+
+  /* ---------- not kâğıdı ---------- */
+  .not {
+    position: relative; margin: 0;
+    background-color: #FBF8F0;
+    background-image: repeating-linear-gradient(180deg, transparent 0 33px, rgba(52, 80, 107, .16) 33px 34px);
+    background-position: 0 22px;
+    padding: 30px 30px 32px;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1), 0 10px 22px -12px rgba(40, 28, 10, .45);
+    transform: rotate(var(--aci, 0deg));
+    font: italic 21px/34px var(--serif);
+  }
+  .not p { margin: 0; }
+  .not small { display: block; margin-top: 14px; font: 15px/1.5 var(--daktilo); color: var(--soluk); font-style: normal; }
+
+  .bilet-not { max-width: 360px; margin: 34px 0 0 auto; padding: 22px 26px 24px; }
+
+  /* ---------- şiir ---------- */
+  .siir-alan { max-width: 1180px; margin: 0 auto; padding: 0 24px 130px; display: flex; justify-content: center; }
+  .siir {
+    width: min(100%, 760px);
+    padding: 44px 48px 46px;
+    background-image: repeating-linear-gradient(180deg, transparent 0 47px, rgba(52, 80, 107, .16) 47px 48px);
+    background-position: 0 36px;
+    font: italic 400 clamp(20px, 2.4vw, 27px)/48px var(--serif);
+  }
+  .siir::before {
+    content: ""; position: absolute; top: 0; bottom: 0; left: 98px; width: 1px; background: rgba(179, 53, 43, .35);
+  }
+  .siir .satir { display: flex; align-items: baseline; }
+  .siir .bas {
+    flex: none; width: 50px; margin-right: 22px; text-align: center;
+    font: 400 clamp(36px, 4.4vw, 46px)/48px var(--baslik); font-style: normal; color: var(--kirmizi);
+  }
+
+  /* ---------- son söz ---------- */
+  .son-soz { font: italic 400 clamp(20px, 2.2vw, 25px)/1.55 var(--serif); margin: 0 0 40px; max-width: 30em; }
+
+  /* ---------- son ---------- */
+  .son {
+    border-top: 1px solid #CFC4AD;
+    max-width: 1180px; margin: 0 auto; padding: 90px 24px 70px;
+    display: grid; grid-template-columns: 300px 1fr; gap: 60px; align-items: center;
+  }
+  .son .baski { max-width: 280px; }
+  .son-isim { font: 400 clamp(52px, 8vw, 104px)/.9 var(--baslik); margin: 0 0 22px; letter-spacing: -.02em; }
+  .son-isim em { font-family: var(--serif); font-size: .5em; color: var(--kirmizi); }
+  .son-satir { font: 15px/1.7 var(--daktilo); color: var(--soluk); margin: 0; }
+  .son-satir b { color: var(--murekkep); }
+  .imza { text-align: center; padding: 0 24px 34px; font: 12px/1 var(--daktilo); letter-spacing: .18em; color: #9A907F; }
+
+  /* ---------- büyütme ---------- */
+  .buyut {
+    position: fixed; inset: 0; z-index: 40;
+    background: rgba(20, 17, 13, .94);
+    display: grid; grid-template-columns: 64px 1fr 64px; align-items: center;
+    opacity: 0; visibility: hidden; transition: opacity .25s, visibility .25s;
+  }
+  .buyut.acik { opacity: 1; visibility: visible; }
+  .buyut img {
+    grid-column: 2; justify-self: center;
+    max-width: 100%; max-height: 86vh; width: auto; height: auto;
+    border: 8px solid #FBFAF6;
+  }
+  .buyut button {
+    background: none; border: 0; color: #EDE6D8; cursor: pointer;
+    font: 30px/1 var(--daktilo); padding: 16px; height: 100%;
+  }
+  .buyut .kapat { position: absolute; top: 10px; right: 10px; height: auto; font-size: 26px; }
+  .buyut .sira {
+    position: absolute; left: 0; right: 0; bottom: 18px; text-align: center;
+    font: 12px/1 var(--daktilo); letter-spacing: .2em; color: #A99E8B;
+  }
+
+  /* ---------- mobil ---------- */
+  @media (max-width: 760px) {
+    .ust { padding: 16px 16px 0; font-size: 11px; }
+    .kapak { grid-template-columns: 1fr; padding: 34px 16px 70px; gap: 46px; }
+    .isimler { font-size: 26vw; }
+    .kapak .baski { justify-self: center; max-width: 88%; }
+    .bilet-alan { padding: 0 16px 90px; }
+    .bilet {
+      grid-template-columns: 1fr; transform: none;
+      -webkit-mask: none; mask: none;
+    }
+    .bilet-ana { padding: 22px 20px 24px; }
+    .bilet-kocan { border-left: 0; border-top: 2px dashed #BDB096; padding: 22px 20px 24px; }
+    .alanlar { grid-template-columns: 1fr; gap: 16px; }
+    .sayac { gap: 8px 14px; }
+    .sayac span { font-size: 34px; }
+    .sayac em { margin-left: 2px; }
+    .bolum-baslik { padding: 0 16px; }
+    .album-alan { padding: 0 16px 100px; }
+    .album { gap: 80px; margin-top: 28px; }
+    .cift, .cift:nth-child(even) { grid-template-columns: 1fr; gap: 30px; }
+    .cift:nth-child(even) .baski { order: 0; }
+    .cift .baski img { max-height: 72vh; }
+    .soz { padding: 0 6px; }
+    .soz p { font-size: 19px; }
+    .son { grid-template-columns: 1fr; gap: 44px; padding: 70px 16px 56px; }
+    .son .baski { max-width: 62%; }
+    .bilet-not { margin: 30px 0 0 auto; max-width: 86%; }
+    .siir-alan { padding: 0 16px 100px; }
+    .siir { padding: 30px 14px 32px; font-size: 15.5px; line-height: 40px; white-space: nowrap; background-image: repeating-linear-gradient(180deg, transparent 0 39px, rgba(52, 80, 107, .16) 39px 40px); background-position: 0 30px; }
+    .siir::before { left: 48px; }
+    .siir .bas { width: 30px; margin-right: 12px; font-size: 30px; line-height: 40px; }
+    .buyut { grid-template-columns: 0 1fr 0; }
+    .buyut .onceki, .buyut .sonraki { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .deklansor { display: none; }
+    .cift { opacity: 1; translate: none; transition: none; }
+    .rulo-ic { animation: none; }
+    .rulo-pencere { overflow-x: auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="deklansor" aria-hidden="true">
+  <div class="acilis">
+    <span class="acilis-damga">'26 4 16</span>
+    <span class="acilis-isim">Arda<b>&amp;</b>Elif</span>
+    <span class="acilis-alt">16 · 04 · 2026</span>
+  </div>
+  <div class="flas"></div>
+</div>
+
+<header class="ust">
+  <span>Arda &amp; Elif</span>
+  <span>16.04.2026</span>
+</header>
+
+<section class="kapak">
+  <div>
+    <h1 class="isimler">Arda<span class="ve">&amp;</span><span class="ikinci">Elif</span></h1>
+    <p class="kapak-alt"><b>16 Nisan 2026</b><i></i><span id="kapakGun">—</span></p>
+  </div>
+  <figure class="baski" data-buyut>
+    <span class="bant ust-orta"></span>
+    <img src="foto/01.jpg" width="1239" height="1600" alt="Arda ve Elif, yaldızlı aynanın önünde">
+    <span class="tarih-damga">'26 4 16</span>
+  </figure>
+</section>
+
+<section class="bilet-alan" aria-label="Birlikte geçen süre">
+  <div class="bilet">
+    <div class="bilet-ana">
+      <div class="bilet-ust"><span>BİLET</span><span>No 160426</span></div>
+      <div class="alanlar">
+        <div class="alan"><small>Yolcular</small><div>Arda &amp; Elif</div></div>
+        <div class="alan"><small>Kalkış</small><div>16 Nisan 2026</div></div>
+        <div class="alan gecen">
+          <small>Geçen süre</small>
+          <div class="sayac">
+            <span><span id="sGun">0</span><em>gün</em></span>
+            <span><span id="sSaat">00</span><em>saat</em></span>
+            <span><span id="sDk">00</span><em>dk</em></span>
+            <span><span id="sSn">00</span><em>sn</em></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="bilet-kocan">
+      <div class="kocan-alan"><small id="ayEtiket">Sıradaki ay dönümü</small><div id="ayDeger">—</div></div>
+      <div class="kocan-alan"><small id="yilEtiket">Yıl dönümü</small><div id="yilDeger">—</div></div>
+      <div class="barkod" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div class="not bilet-not"><span class="bant sag"></span><p>Bir bozuk saattir yüreğim, hep sende durur.</p></div>
+</section>
+
+<section class="rulo-alan">
+  <div class="bolum-baslik"><h2>Rulo</h2><span>01</span></div>
+  <div class="rulo">
+    <div class="rulo-pencere"><div class="rulo-ic">
+      <figure class="kare" data-buyut><img src="foto/09.jpg" width="1600" height="1200" alt="Arda ve Elif"><figcaption>▸ 1</figcaption></figure>
+      <figure class="kare" data-buyut><img src="foto/10.jpg" width="1200" height="1600" alt="Arda ve Elif"><figcaption>▸ 2</figcaption></figure>
+      <figure class="kare" data-buyut><img src="foto/11.jpg" width="1200" height="1600" alt="Arda ve Elif"><figcaption>▸ 3</figcaption></figure>
+      <figure class="kare" data-buyut><img src="foto/12.jpg" width="1200" height="1600" alt="Arda ve Elif"><figcaption>▸ 4</figcaption></figure>
+      <figure class="kare" data-buyut><img src="foto/13.jpg" width="901" height="1600" alt="Arda ve Elif"><figcaption>▸ 5</figcaption></figure>
+      <figure class="kare" data-buyut><img src="foto/07.jpg" width="1200" height="1600" alt="Fotoğraf makinesinin ekranında Arda ve Elif"><figcaption>▸ 6</figcaption></figure>
+      <figure class="kare" data-buyut><img src="foto/04.jpg" width="1200" height="1600" alt="Arda ve Elif, lokomotifin üstünde"><figcaption>▸ 7</figcaption></figure>
+    </div></div>
+  </div>
+</section>
+
+<section class="siir-alan" aria-label="Şiir">
+  <div class="not siir">
+    <span class="bant ust-orta"></span>
+    <p class="satir"><span class="bas">E</span><span>llerinde yeşermek istiyorum</span></p>
+    <p class="satir"><span class="bas">L</span><span>ale gibi yeşermek</span></p>
+    <p class="satir"><span class="bas">İ</span><span>nsan dediğin bu kadar kusursuz olurmu</span></p>
+    <p class="satir"><span class="bas">F</span><span>ilm gibisin izlemeye doyamıyorum</span></p>
+  </div>
+</section>
+
+<section class="album-alan">
+  <div class="bolum-baslik" style="padding:0"><h2>Albüm</h2><span>02</span></div>
+  <div class="album">
+    <article class="cift">
+      <figure class="baski" data-buyut><img src="foto/02.jpg" width="1200" height="1600" alt="Arda ve Elif, aynada" loading="lazy"></figure>
+      <blockquote class="soz"><p>Ruhlarımız neyden yapılmışsa,<br>onunki de benimki de<br>aynı şeyden yapılmış.</p></blockquote>
+    </article>
+    <article class="cift">
+      <figure class="baski" data-buyut><img src="foto/03.jpg" width="1600" height="1200" alt="Arda ve Elif, lokomotifin önünde" loading="lazy"></figure>
+      <blockquote class="soz"><p>Tanrım! Koca bir mutluluk dakikası!<br>Bir insanın bütün ömrüne<br>az mı gelir bu?</p></blockquote>
+    </article>
+    <article class="cift">
+      <figure class="baski" data-buyut><img src="foto/05.jpg" width="1200" height="1600" alt="Deniz kenarında tutuşan eller" loading="lazy"></figure>
+      <blockquote class="soz"><p>Seni seviyorum işte;<br>sevgim seni sarıyor,<br>denizin, dibindeki<br>küçücük bir çakıl taşını<br>sevdiği gibi.</p></blockquote>
+    </article>
+    <article class="cift">
+      <figure class="baski" data-buyut><img src="foto/06.jpg" width="1200" height="1600" alt="Otobüs yolculuğu" loading="lazy"></figure>
+      <blockquote class="soz"><p>Hayatın en büyük mutluluğu,<br>sevildiğine inanmaktır;<br>kendin için sevildiğine,<br>daha doğrusu,<br>kendine rağmen sevildiğine.</p></blockquote>
+    </article>
+    <article class="cift">
+      <figure class="baski" data-buyut><img src="foto/08.jpg" width="1600" height="1200" alt="Arda ve Elif gülüyor" loading="lazy"></figure>
+      <blockquote class="soz"><p>Aşk şudur:<br>iki yalnızlığın<br>birbirini koruması,<br>birbirine dokunması<br>ve birbirini selamlaması.</p></blockquote>
+    </article>
+    <article class="cift">
+      <figure class="baski" data-buyut><img src="foto/14.jpg" width="1200" height="1600" alt="Cami kubbesinin altında" loading="lazy"></figure>
+      <blockquote class="soz"><p>Aşk imiş her ne var âlemde,<br>ilm bir kîl ü kâl imiş ancak.</p></blockquote>
+    </article>
+    <article class="cift">
+      <figure class="baski" data-buyut><img src="foto/15.jpg" width="1600" height="1200" alt="Arda ve Elif" loading="lazy"></figure>
+      <blockquote class="soz"><p>Değişen bir şey bulunca<br>değişen aşk, aşk değildir.<br>Aşk, kısa saatleri ve haftalarıyla değişmez;<br>kıyametin eşiğine dek dayanır.</p></blockquote>
+    </article>
+    <article class="cift">
+      <figure class="baski" data-buyut><img src="foto/16.jpg" width="901" height="1600" alt="Elif motosikletin üstünde" loading="lazy"></figure>
+      <blockquote class="soz"><p>Sana olan sevgim bir gün bitecek olursa oda nk yüzündendir :)</p><small>(şaka şaka seni seviyorum)</small></blockquote>
+    </article>
+  </div>
+</section>
+
+<footer>
+  <section class="son">
+    <figure class="baski" data-buyut><span class="bant ust-orta"></span><img src="foto/17.jpg" width="1024" height="1536" alt="Çocukluk fotoğrafı" loading="lazy"></figure>
+    <div>
+      <p class="son-soz">Normalde karmaşayı hiç sevmem ama senin o kıvırcık saçlarının arasındaki dağınıklıkta kaybolmaya bayılıyorum</p>
+      <p class="son-isim">Arda <em>&amp;</em> Elif</p>
+      <p class="son-satir"><b>16.04.2026</b> — bugün<br><span id="sonGun">—</span></p>
+    </div>
+  </section>
+  <div class="imza">ARDA · ELİF · 2026</div>
+</footer>
+
+<div class="buyut" id="buyut" role="dialog" aria-modal="true" aria-label="Fotoğraf">
+  <button class="onceki" aria-label="Önceki">←</button>
+  <img alt="">
+  <button class="sonraki" aria-label="Sonraki">→</button>
+  <button class="kapat" aria-label="Kapat">✕</button>
+  <div class="sira"></div>
+</div>
+
+<script>
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  window.scrollTo(0, 0);
+  window.addEventListener("pageshow", function () { window.scrollTo(0, 0); });
+
+  var BASLANGIC = new Date(2026, 3, 16, 0, 0, 0);
+  var AYLAR = ["Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"];
+
+  function iki(n) { return (n < 10 ? "0" : "") + n; }
+  function gunFarki(a, b) {
+    var x = new Date(a.getFullYear(), a.getMonth(), a.getDate());
+    var y = new Date(b.getFullYear(), b.getMonth(), b.getDate());
+    return Math.round((y - x) / 86400000);
+  }
+  function yaz(id, metin) { var el = document.getElementById(id); if (el) el.textContent = metin; }
+  function yazHtml(id, html) { var el = document.getElementById(id); if (el) el.innerHTML = html; }
+
+  function sayacGuncelle() {
+    var simdi = new Date();
+    var fark = Math.max(0, simdi - BASLANGIC);
+    var gun = Math.floor(fark / 86400000);
+    yaz("sGun", gun);
+    yaz("sSaat", iki(Math.floor(fark / 3600000) % 24));
+    yaz("sDk", iki(Math.floor(fark / 60000) % 60));
+    yaz("sSn", iki(Math.floor(fark / 1000) % 60));
+    yaz("kapakGun", gun + ". gün");
+    yaz("sonGun", gun + " gün");
+  }
+
+  function donumGuncelle() {
+    var bugun = new Date();
+    var g = BASLANGIC.getDate();
+
+    // ay dönümü
+    var ay = (bugun.getFullYear() - 2026) * 12 + (bugun.getMonth() - 3);
+    if (bugun.getDate() === g && ay > 0) {
+      yaz("ayEtiket", "Bugün");
+      yazHtml("ayDeger", "<b>" + ay + ".</b> ay");
+    } else {
+      var hedef = new Date(bugun.getFullYear(), bugun.getMonth(), g);
+      if (hedef <= bugun) hedef = new Date(bugun.getFullYear(), bugun.getMonth() + 1, g);
+      var ayNo = (hedef.getFullYear() - 2026) * 12 + (hedef.getMonth() - 3);
+      yaz("ayEtiket", ayNo + ". ay · " + g + " " + AYLAR[hedef.getMonth()]);
+      yazHtml("ayDeger", "<b>" + gunFarki(bugun, hedef) + "</b> gün kaldı");
+    }
+
+    // yıl dönümü
+    var yil = bugun.getFullYear() - 2026;
+    if (bugun.getMonth() === 3 && bugun.getDate() === g && yil > 0) {
+      yaz("yilEtiket", "Bugün");
+      yazHtml("yilDeger", "<b>" + yil + ".</b> yıl");
+    } else {
+      var yh = new Date(bugun.getFullYear(), 3, g);
+      if (yh <= bugun) yh = new Date(bugun.getFullYear() + 1, 3, g);
+      yaz("yilEtiket", (yh.getFullYear() - 2026) + ". yıl · " + g + " Nisan " + yh.getFullYear());
+      yazHtml("yilDeger", "<b>" + gunFarki(bugun, yh) + "</b> gün kaldı");
+    }
+  }
+
+  sayacGuncelle();
+  donumGuncelle();
+  setInterval(sayacGuncelle, 1000);
+  setInterval(donumGuncelle, 60000);
+
+  // açılış
+  function perdeyiAc() {
+    if (document.body.classList.contains("acildi")) return;
+    document.body.classList.add("flasla");
+    setTimeout(function () { document.body.classList.add("acildi"); }, 120);
+    setTimeout(function () { document.body.classList.add("bitti"); }, 1300);
+  }
+  var acilisBasladi = Date.now();
+  window.addEventListener("load", function () {
+    window.scrollTo(0, 0);
+    setTimeout(perdeyiAc, Math.max(0, 2900 - (Date.now() - acilisBasladi)));
+  });
+  setTimeout(perdeyiAc, 5000);
+  document.querySelector(".deklansor").addEventListener("click", perdeyiAc);
+
+  // albüm görünme
+  var baskilar = document.querySelectorAll(".cift");
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (girdiler) {
+      girdiler.forEach(function (g) {
+        if (g.isIntersecting) { g.target.classList.add("gorundu"); io.unobserve(g.target); }
+      });
+    }, { rootMargin: "0px 0px -8% 0px" });
+    baskilar.forEach(function (b) { io.observe(b); });
+  } else {
+    baskilar.forEach(function (b) { b.classList.add("gorundu"); });
+  }
+
+  // büyütme
+  var kutu = document.getElementById("buyut");
+  var kutuImg = kutu.querySelector("img");
+  var ogeler = Array.prototype.slice.call(document.querySelectorAll("[data-buyut] img"));
+  var aktif = 0;
+
+  function goster(i) {
+    aktif = (i + ogeler.length) % ogeler.length;
+    kutuImg.src = ogeler[aktif].currentSrc || ogeler[aktif].src;
+    kutuImg.alt = ogeler[aktif].alt;
+    kutu.querySelector(".sira").textContent = iki(aktif + 1) + " / " + iki(ogeler.length);
+  }
+  function ac(i) { goster(i); kutu.classList.add("acik"); document.body.style.overflow = "hidden"; }
+  function kapat() { kutu.classList.remove("acik"); document.body.style.overflow = ""; }
+
+  ogeler.forEach(function (img, i) {
+    img.closest("[data-buyut]").addEventListener("click", function () { ac(i); });
+  });
+
+  // film rulosu: kareleri çoğaltıp sürekli kaydır
+  var rulo = document.querySelector(".rulo");
+  var ruloIc = rulo.querySelector(".rulo-ic");
+  var asilKareler = Array.prototype.slice.call(ruloIc.children);
+  for (var t = 0; t < 3; t++) {
+    asilKareler.forEach(function (kare) {
+      var kopya = kare.cloneNode(true);
+      kopya.removeAttribute("data-buyut");
+      kopya.setAttribute("aria-hidden", "true");
+      var hedef = ogeler.indexOf(kare.querySelector("img"));
+      kopya.addEventListener("click", function () { ac(hedef); });
+      ruloIc.appendChild(kopya);
+    });
+  }
+  function ruloOlc() {
+    var set = 0;
+    asilKareler.forEach(function (k) { set += k.getBoundingClientRect().width + 14; });
+    ruloIc.style.setProperty("--set", set + "px");
+    ruloIc.style.setProperty("--sure", Math.round(set / 90) + "s");
+  }
+  ruloOlc();
+  window.addEventListener("load", ruloOlc);
+  window.addEventListener("resize", ruloOlc);
+  rulo.addEventListener("touchstart", function () { rulo.classList.add("dur"); }, { passive: true });
+  rulo.addEventListener("touchend", function () { rulo.classList.remove("dur"); });
+  kutu.querySelector(".onceki").addEventListener("click", function (e) { e.stopPropagation(); goster(aktif - 1); });
+  kutu.querySelector(".sonraki").addEventListener("click", function (e) { e.stopPropagation(); goster(aktif + 1); });
+  kutu.querySelector(".kapat").addEventListener("click", kapat);
+  kutu.addEventListener("click", function (e) { if (e.target === kutu) kapat(); });
+  document.addEventListener("keydown", function (e) {
+    if (!kutu.classList.contains("acik")) return;
+    if (e.key === "Escape") kapat();
+    if (e.key === "ArrowLeft") goster(aktif - 1);
+    if (e.key === "ArrowRight") goster(aktif + 1);
+  });
+
+  var dokunX = null;
+  kutu.addEventListener("touchstart", function (e) { dokunX = e.touches[0].clientX; }, { passive: true });
+  kutu.addEventListener("touchend", function (e) {
+    if (dokunX === null) return;
+    var dx = e.changedTouches[0].clientX - dokunX;
+    if (Math.abs(dx) > 45) goster(aktif + (dx < 0 ? 1 : -1));
+    else if (e.target === kutu || e.target === kutuImg) kapat();
+    dokunX = null;
+  });
+</script>
+</body>
+</html>
